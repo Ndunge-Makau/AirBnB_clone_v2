@@ -1,4 +1,6 @@
-<center> <h1>HBNB - The Console</h1> </center>
+# 0x02. AirBnB clone - MySQL
+
+<center> <h2>HBNB - The Console</h2> </center>
 
 This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
 
@@ -140,3 +142,84 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 <br>
+
+
+## <center> Project: 0x02. AirBnB clone - MySQL </center>
+
+#### Learning Objectives
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
+#### General
+* What is Unit testing and how to implement it in a large project
+* What is *args and how to use it
+* What is **kwargs and how to use it
+* How to handle named arguments in a function
+* How to create a MySQL database
+* How to create a MySQL user and grant it privileges
+* What ORM means
+* How to map a Python Class to a MySQL table
+* How to handle 2 different storage engines with the same codebase
+* How to use environment variables
+
+
+## <u>Tasks</u>
+
+### 0. Fork me if you can!
+
+In the industry, you will work on an existing codebase 90% of the time. Your first thoughts upon looking at it might include:
+
+* “Who did this code?”
+* “How it works?”
+* “Where are unittests?”
+* “Where is this?”
+* “Why did they do that like this?”
+* “I don’t understand anything.”
+* “… I will refactor everything…”
+But the worst thing you could possibly do is to redo everything. Please don’t do that! Note: the existing codebase might be perfect, or it might have errors. Don’t always trust the existing codebase!
+
+For this project you will fork this codebase:
+
+* update the repository name to AirBnB_clone_v2
+* update the README.md with your information but don’t delete the initial authors
+If you are the owner of this repository, please create a new repository named AirBnB_clone_v2 with the same content of AirBnB_clone
+
+
+### 1. Bug free!
+
+Do you remember the unittest module?
+
+This codebase contains many test cases. Some are missing, but the ones included cover the basic functionality of the program.
+
+```
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m unittest discover tests 2>&1 /dev/null | tail -n 1
+OK
+guillaume@ubuntu:~/AirBnB_v2$ 
+```
+All your unittests must pass without any errors at anytime in this project, with each storage engine!. Same for PEP8!
+
+```
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_ENV=test HBNB_MYSQL_USER=hbnb_test HBNB_MYSQL_PWD=hbnb_test_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_test_db HBNB_TYPE_STORAGE=db python3 -m unittest discover tests 2>&1 /dev/null | tail -n 1
+OK
+guillaume@ubuntu:~/AirBnB_v2$
+```
+
+### 2. Console improvements
+
+Update the def do_create(self, arg): function of your command interpreter (console.py) to allow for object creation with given parameters:
+
+* Command syntax: create <Class name> <param 1> <param 2> <param 3>...
+* Param syntax: <key name>=<value>
+* Value syntax:
+  * String: "<value>" => starts with a double quote
+    * any double quote inside the value must be escaped with a backslash \
+    * all underscores _ must be replace by spaces . Example: You want to set the string My little house to the attribute name, your command line must be name="My_little_house"
+  * Float: <unit>.<decimal> => contains a dot .
+  * Integer: <number> => default case
+* If any parameter doesn't fit with these requirements or can’t be recognized correctly by your program, it must be skipped
+* Don’t forget to add tests for this new feature!
+
+Also, this new feature will be tested here only with FileStorage engine.
+
+File: <b>console.py, models/, tests/</b>
+
+
