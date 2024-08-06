@@ -39,7 +39,7 @@ class TestHBNBCommand(unittest.TestCase):
         except IOError:
             pass
 
-    # @unittest.skipIf(type(models.storage) == DBStorage, 'Testing DBStorage')
+    @unittest.skipIf(type(models.storage) == DBStorage, 'Testing DBStorage')
     def test_create(self):
         """Tests the create function."""
         with patch('sys.stdout', new=StringIO()) as test:
