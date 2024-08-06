@@ -30,6 +30,15 @@ class TestHBNBCommand(unittest.TestCase):
             pass
         del cls.HBNB
 
+    def setUp(self):
+        FileStorage._FileStorage__objects = {}
+
+    def tearDown(self):
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+
     # @unittest.skipIf(type(models.storage) == DBStorage, 'Testing DBStorage')
     def test_create(self):
         """Tests the create function."""
