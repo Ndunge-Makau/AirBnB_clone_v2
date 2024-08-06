@@ -11,6 +11,7 @@ from io import StringIO
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
+
 class TestHBNBCommand(unittest.TestCase):
     """Tests the functionality of the HBNB console."""
     @classmethod
@@ -29,7 +30,7 @@ class TestHBNBCommand(unittest.TestCase):
         except IOError:
             pass
         del cls.HBNB
-        if type(models.storage) == DBStorage:
+        if isinstance(models.storage, DBStorage):
             models.storage._DBStorage__session.close()
 
     def setUp(self):
@@ -69,4 +70,3 @@ class TestHBNBCommand(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
