@@ -13,22 +13,22 @@ from models.engine.file_storage import FileStorage
 
 class TestHBNBCommand(unittest.TestCase):
     """Tests the functionality of the HBNB console."""
-
     @classmethod
-    def setUpClass(test_cls):
+    def setUpClass(cls):
         try:
-            os.rename("file.json", "tmp_file")
+            os.rename('file.json', 'tmp_file.json')
         except IOError:
             pass
-        test_cls.HBNB = HBNBCommand()
+        cls.HBNB = HBNBCommand()
 
     @classmethod
-    def tearDownClass(test_cls):
+    def tearDownClass(cls):
         try:
-            os.rename("tmp_file", "file.json")
+            os.remove('file.json')
+            os.rename('tmp_file.json', 'file.json')
         except IOError:
             pass
-        del test_cls.HBNB
+        del cls.HBNB
         if type(models.storage) == DBStorage:
             models.storage._DBStorage__session.close()
 
@@ -41,11 +41,12 @@ class TestHBNBCommand(unittest.TestCase):
         except IOError:
             pass
 
-    # @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBstorage")
+    # @unittest.skipIf(type(models.storage) == DBStorage, 'Testing DBStorage')
     def test_create(self):
+        """Tests the create function."""
         with patch("sys.stdout", new=StringIO()) as test:
-            self.HBNB.onecmd("create BaseMOdel")
-            new_bm = test.getvalue().strip()
+            self.HBNB.onecmd('create BaseModel')
+            new_basemodel = test.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as test:
             self.HBNB.onecmd("create State")
             new_state = test.getvalue().strip()
@@ -66,5 +67,6 @@ class TestHBNBCommand(unittest.TestCase):
             new_amenity = test.getvalue().strip()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
+
