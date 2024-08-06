@@ -249,3 +249,13 @@ Write a script that prepares a MySQL server for the project:
 * If the database hbnb_test_db or the user hbnb_test already exists, your script should not fail
 
 File: <b>setup_mysql_test.sql</b>
+
+
+### 5. Delete object
+
+Update FileStorage: (models/engine/file_storage.py)
+
+* Add a new public instance method: def delete(self, obj=None): to delete obj from __objects if it’s inside - if obj is equal to None, the method should not do anything
+* Update the prototype of def all(self) to def all(self, cls=None) - that returns the list of objects of one type of class. Example below with State - it’s an optional filtering
+
+File: <b>models/engine/file_storage.py</b>
