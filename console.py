@@ -115,25 +115,27 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
-        args_list = args.split()
-        if not args_list[0]:
+        if not args:
             print("** class name missing **")
             return
-        elif args_list[0] not in HBNBCommand.classes:
+        args_list = args.split()
+        if args_list[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
         new_instance = HBNBCommand.classes[args_list[0]]()
         parameters = args_list[1:]
-        for param in parameters:
-            key, value = param.split("=")
+        for arg in parameters:
+            param = arg.split('=')
+            key = param[0]
+            value = param[1]
             if value.startswith("\""):
-                value.replace('\"', '').replace('_', ' ')
-            elif value.split('.'):
+                value = value.replace('\"', '').replace('_', ' ')
+            elif '.' in value:
                 value = float(value)
             elif isinstance(int(value), int):
                 value = int(value)
             setattr(new_instance, key, value)
-        storage.save()
+        new_instance.save()
         print(new_instance.id)
         storage.save()
 
@@ -294,7 +296,7 @@ class HBNBCommand(cmd.Cmd):
             if not att_name and args[0] != ' ':
                 att_name = args[0]
             # check for quoted val arg
-            if args[2] and args[2][0] == '\"':
+            if args[2] and args[2][0] ==  '\"':
                 att_val = args[2][1:args[2].find('\"', 1)]
 
             # if att_val was not quoted arg
