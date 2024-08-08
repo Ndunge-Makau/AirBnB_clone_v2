@@ -366,3 +366,26 @@ Update __init__.py: (models/__init__.py)
 
 File: <b>models/base_model.py, models/city.py, models/state.py, models/engine/db_storage.py, models/__init__.py</b>
 
+
+### 7. DBStorage - User
+
+Update User: (models/user.py)
+
+* User inherits from BaseModel and Base (respect the order)
+* Add or replace in the class User:
+  * class attribute __tablename__
+    * represents the table name, users
+  * class attribute email
+    * represents a column containing a string (128 characters)
+    * can’t be null
+  * class attribute password
+    * represents a column containing a string (128 characters)
+    * can’t be null
+  * class attribute first_name
+    * represents a column containing a string (128 characters)
+    * can be null
+  * class attribute last_name
+    * represents a column containing a string (128 characters)
+    * can be null
+
+File: <b>models/user.py</b>
