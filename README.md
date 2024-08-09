@@ -389,3 +389,59 @@ Update User: (models/user.py)
     * can be null
 
 File: <b>models/user.py</b>
+
+
+### 8. DBStorage - Place
+
+Update Place: (models/place.py)
+
+* Place inherits from BaseModel and Base (respect the order)
+* Add or replace in the class Place:
+  * class attribute __tablename__
+    * represents the table name, places
+  * class attribute city_id
+    * represents a column containing a string (60 characters)
+    * can’t be null
+    * is a foreign key to cities.id
+  * class attribute user_id
+    * represents a column containing a string (60 characters)
+    * can’t be null
+    * is a foreign key to users.id
+  * class attribute name
+    * represents a column containing a string (128 characters)
+    * can’t be null
+  * class attribute description
+    * represents a column containing a string (1024 characters)
+    * can be null
+  * class attribute number_rooms
+    * represents a column containing an integer
+    * can’t be null
+    * default value: 0
+  * class attribute number_bathrooms
+    * represents a column containing an integer
+    * can’t be null
+    * default value: 0
+  * class attribute max_guest
+    * represents a column containing an integer
+    * can’t be null
+    * default value: 0
+  * class attribute price_by_night
+    * represents a column containing an integer
+    * can’t be null
+    * default value: 0
+  * class attribute latitude
+    * represents a column containing a float
+    * can be null
+  * class attribute longitude
+    * represents a column containing a float
+    * can be null
+
+Update User: (models/user.py)
+* Add or replace in the class User:
+  * class attribute places must represent a relationship with the class Place. If the User object is deleted, all linked Place objects must be automatically deleted. Also, the reference from a Place object to his User should be named user
+
+Update City: (models/city.py)
+* Add or replace in the class City:
+  * class attribute places must represent a relationship with the class Place. If the City object is deleted, all linked Place objects must be automatically deleted. Also, the reference from a Place object to his City should be named cities
+
+File: <b>models/place.py, models/user.py, models/city.py</b>
